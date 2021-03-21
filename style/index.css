@@ -1,0 +1,11 @@
+body{
+    background: var(--background);
+}
+
+#app-nav{
+    display: flex;
+}
+
+#logo{
+    width: 160px;
+}
