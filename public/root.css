@@ -1,0 +1,18 @@
+root{
+
+    /*Theme*/
+    --priamry:#6BF564;
+    --primary-light:#88FF82;
+    --primary-dark:#3AA834;
+    --secondary:#F58DC8;
+    --secondary-dark:#A82D73;
+    /*Text*/
+    --error:#F01A3E;
+    --text-primary:#1c1c1c;
+    --text-inverted:#f5fcf5;
+    --text-disabled:#899189;
+    /*Surfaces*/
+    --background:#edf5ef;
+    --surface:#cbd6ce;
+    --top:#f0fff4;
+}
