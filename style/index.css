@@ -7,8 +7,23 @@ body {
     display: flex;
 }
 
+@keyframes logo-enter {
+    0% {
+        transform: translateX(-100%) scale(0.25);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateX(0) scale(1) rotateZ(720deg);
+        opacity: 1;
+    }
+}
+
 #logo {
     width: 160px;
+    animation-duration: 1s;
+    animation-name: logo-enter;
+    animation-iteration-count: 1;
 }
 
 #nav-menu {
@@ -51,3 +66,5 @@ body {
 .home-section-header {
     color: var(--text-disabled);
 }
+
+
