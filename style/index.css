@@ -1,11 +1,49 @@
-body{
+body {
     background: var(--background);
+    margin:1rem;
 }
 
-#app-nav{
+#app-nav {
     display: flex;
 }
 
-#logo{
+#logo {
     width: 160px;
+}
+
+#nav-menu {
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--priamry);
+    border-radius: 6.25rem;
+    list-style: none;
+    display: flex;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-item {
+    padding: 0.75rem;
+    font-family: Raleway, sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: ease-in-out background-color 0.3s, linear font-size 0.1s;
+}
+
+.nav-item:hover {
+    background: var(--primary-light);
+    font-size: 1.65rem
+}
+
+.nav-item:first-of-type {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--text-inverted);
+    border-radius: 6.25rem 0 0 6.25rem;
+    padding-left: 1.25rem;
+}
+
+.nav-item:last-of-type {
+    border-radius: 0 6.25rem 6.25rem 0;
+    padding-right: 1.25rem;
 }
