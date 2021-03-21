@@ -1,6 +1,6 @@
 body {
     background: var(--background);
-    margin:1rem;
+    margin: 1rem;
 }
 
 #app-nav {
@@ -46,4 +46,8 @@ body {
 .nav-item:last-of-type {
     border-radius: 0 6.25rem 6.25rem 0;
     padding-right: 1.25rem;
+}
+
+.home-section-header {
+    color: var(--text-disabled);
 }

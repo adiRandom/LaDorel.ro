@@ -1,18 +1,62 @@
-:root{
+:root {
 
     /*Theme*/
-    --priamry:#6BF564;
-    --primary-light:#88FF82;
-    --primary-dark:#3AA834;
-    --secondary:#F58DC8;
-    --secondary-dark:#A82D73;
+    --priamry: #6BF564;
+    --primary-light: #88FF82;
+    --primary-dark: #3AA834;
+    --secondary: #F58DC8;
+    --secondary-dark: #A82D73;
     /*Text*/
-    --error:#F01A3E;
-    --text-primary:#1c1c1c;
-    --text-inverted:#f5fcf5;
-    --text-disabled:#899189;
+    --error: #F01A3E;
+    --text-primary: #1c1c1c;
+    --text-inverted: #f5fcf5;
+    --text-disabled: #899189;
     /*Surfaces*/
-    --background:#edf5ef;
-    --surface:#cbd6ce;
-    --top:#f0fff4;
+    --background: #edf5ef;
+    --surface: #cbd6ce;
+    --top: #f0fff4;
+}
+
+/*Typography*/
+h1 {
+    font-size: 3rem;
+    font-family: Raleway sans-serif;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2.75rem;
+    font-family: Raleway sans-serif;
+    font-weight: 600;
+}
+
+
+h3 {
+    font-size: 2.5rem;
+    font-family: Raleway sans-serif;
+    font-weight: 400;
+
+}
+
+h4 {
+    font-size: 2rem;
+    font-family: Raleway sans-serif;
+}
+
+h5 {
+    font-size: 1.5rem;
+    font-weight: 100;
+    font-family: Raleway sans-serif;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 100;
+    font-family: Raleway sans-serif;
+}
+
+
+p {
+    font-size: 1rem;
+    font-family: Raleway sans-serif;
 }
