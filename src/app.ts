@@ -17,7 +17,6 @@ app.use(json())
 // Routes
 app.get('/', async (req, res) => {
     const item = await import("./fixtures/trending.json") as Item
-    console.log(item)
     res.render("pages/home/index", {item})
 })
 
