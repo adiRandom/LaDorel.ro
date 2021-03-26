@@ -14,7 +14,9 @@
     /*Surfaces*/
     --background: #edf5ef;
     --surface: #cbd6ce;
-    --top: #f0fff4;
+    --top: #f9f9f9;
+
+    --shadow:#737373 2px 2px 8px 0px;
 }
 
 /*Typography*/
@@ -41,12 +43,14 @@ h3 {
 h4 {
     font-size: 2rem;
     font-family: Raleway sans-serif;
+    margin: 0;
 }
 
 h5 {
     font-size: 1.5rem;
     font-weight: 100;
     font-family: Raleway sans-serif;
+    margin: 0;
 }
 
 h6 {

@@ -1,10 +1,8 @@
 import express, {json, static as expressStatic} from 'express';
 import path from 'path'
+import {Item} from "./models/Item";
 
 const app = express();
-// app.use(json);
-
-
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -13,9 +11,14 @@ app.set('view engine', 'ejs');
 app.use(expressStatic(path.join(__dirname, '../public')))
 
 
+app.use(json())
+
+
 // Routes
-app.get('/', (req, res) => {
-    res.render("pages/home/index")
+app.get('/', async (req, res) => {
+    const item = await import("./fixtures/trending.json") as Item
+    console.log(item)
+    res.render("pages/home/index", {item})
 })
 
 

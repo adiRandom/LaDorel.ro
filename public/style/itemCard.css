@@ -1,0 +1,29 @@
+.card{
+    height: 18.25rem;
+    width: 12rem;
+    background: var(--top);
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    transition: box-shadow 0.1s linear;
+}
+
+.card-thumbnail{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.card-title{
+    margin-bottom: 1rem;
+    max-height: 50%;
+    word-wrap: break-word;
+}
+
+.card-price{
+    margin-top: auto;
+}
+
+.card:hover{
+    box-shadow: var(--shadow)
+}
