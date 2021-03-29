@@ -192,3 +192,37 @@ body {
 .nav-menu-dropdown-item:hover {
     background: var(--secondary);
 }
+
+
+
+/*INPUTS*/
+
+input{
+    border-radius: 0.5rem;
+    border: none;
+    min-height: 1.25rem;
+
+}
+
+input:focus{
+    outline: none;
+    border: 0.5px solid var(--secondary);
+    box-shadow: var(--shadow);
+}
+
+.button-primary{
+    border-radius: 1.25rem;
+    font-size: 1.75rem;
+    font-family: Raleway sans-serif;
+    font-weight: 600;
+    background: var(--priamry);
+    border: 1px solid var(--primary-dark);
+    color: var(--text-inverted);
+    letter-spacing: 1px;
+    transition: box-shadow ease-in 0.2s;
+    cursor: pointer;
+}
+
+.button-primary:hover{
+    box-shadow: var(--shadow);
+}

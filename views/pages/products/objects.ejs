@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/style/itemCard.css">
 </head>
 <body>
-<%-include("../../components/navigation/navbar")%>
+<%- include("../../components/navigation/navbar") %>
 <main>
 
     <header>
@@ -31,6 +31,17 @@
     </header>
     <aside>
         <h4>Filtre</h4>
+        <div class="filter">
+            <h5>Pret</h5>
+            <div class="filter-values" id="price-range">
+                <h6 class="price-range-label">De la</h6>
+                <input class="price-range-input" type="number" value="0"/>
+                <h6 class="price-range-label">pana la</h6>
+                <input class="price-range-input" type="number" value="0">
+            </div>
+            <h6 id="price-range-hint">0 inseamna nesetat</h6>
+        </div>
+        <button id="filter-submit" class="button-primary">Filtreaza</button>
     </aside>
     <article>
         <% items.forEach(item=>{ %>

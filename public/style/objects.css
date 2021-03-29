@@ -1,6 +1,6 @@
 main {
     display: grid;
-    grid-template-columns: 2fr 8fr;
+    grid-template-columns: 3fr 7fr;
     grid-template-rows: 2fr 8fr;
     grid-template-areas: "blank header header"
                          "filter content content"
@@ -22,6 +22,8 @@ aside {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 article {
@@ -33,4 +35,41 @@ article {
 
 footer {
     grid-area: footer;
+}
+
+.filter{
+    margin-top: 1.5rem;
+}
+
+
+.filter-values{
+    margin-top: 0.5rem;
+}
+
+#price-range{
+    display: flex;
+    align-items: center;
+}
+
+.price-range-label{
+    font-weight: 600;
+    margin-right: 0.75rem;
+}
+
+.price-range-input{
+    width: 4rem;
+}
+
+.price-range-input:first-of-type{
+    margin-right: 0.75rem;
+}
+
+#price-range-hint{
+    font-weight: 600;
+    color:var(--text-disabled);
+    margin-top: 1rem;
+}
+
+#filter-submit{
+    margin-top: auto;
 }

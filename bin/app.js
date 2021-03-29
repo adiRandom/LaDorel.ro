@@ -52,5 +52,21 @@ app.get("/unelte", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }
     });
 }));
+app.get("/unelte-de-putere", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
+    res.render("pages/products/objects", {
+        items, meta: {
+            location: "unelte de putere"
+        }
+    });
+}));
+app.get("/masini", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
+    res.render("pages/products/objects", {
+        items, meta: {
+            location: "masini"
+        }
+    });
+}));
 app.listen(3000);
 console.log("Started");
