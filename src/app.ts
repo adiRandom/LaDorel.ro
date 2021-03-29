@@ -29,6 +29,24 @@ app.get("/unelte", async (req, res) => {
     })
 })
 
+app.get("/unelte-de-putere", async (req, res) => {
+    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    res.render("pages/products/objects", {
+        items, meta: {
+            location: "unelte de putere"
+        }
+    })
+})
+
+app.get("/masini", async (req, res) => {
+    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    res.render("pages/products/objects", {
+        items, meta: {
+            location: "masini"
+        }
+    })
+})
+
 
 app.listen(3000);
 console.log("Started")
