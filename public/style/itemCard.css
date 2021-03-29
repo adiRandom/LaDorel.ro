@@ -18,6 +18,7 @@
     margin-bottom: 1rem;
     max-height: 50%;
     word-wrap: break-word;
+    font-weight: 600;
 }
 
 .card-price{

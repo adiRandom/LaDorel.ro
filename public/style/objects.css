@@ -1,0 +1,36 @@
+main {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 2fr 8fr;
+    grid-template-areas: "blank header header"
+                         "filter content content"
+                         "filter footer footer";
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+}
+
+header {
+    grid-area: header;
+    height: fit-content;
+    margin-left: 4rem;
+}
+
+aside {
+    grid-area: filter;
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+article {
+    overflow-y: auto;
+    display: flex;
+    grid-area: content;
+    margin-left: 4rem;
+}
+
+footer {
+    grid-area: footer;
+}

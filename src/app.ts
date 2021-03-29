@@ -1,4 +1,4 @@
-import express, {json, static as expressStatic} from 'express';
+import express from 'express';
 import path from 'path'
 import {Item} from "./models/Item";
 
@@ -8,16 +8,25 @@ app.set('view engine', 'ejs');
 
 //set the public folder
 
-app.use(expressStatic(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 
-app.use(json())
+app.use(express.json())
 
 
 // Routes
 app.get('/', async (req, res) => {
-    const item = await import("./fixtures/trending.json") as Item
-    res.render("pages/home/index", {item})
+    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    res.render("pages/home/index", {item: items[0]})
+})
+
+app.get("/unelte", async (req, res) => {
+    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    res.render("pages/products/objects", {
+        items, meta: {
+            location: "unelte"
+        }
+    })
 })
 
 
