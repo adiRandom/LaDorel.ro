@@ -91,7 +91,7 @@ body {
     display: flex;
     position: fixed;
     width: 100vw;
-    top:0;
+    top: 0;
 }
 
 @keyframes logo-enter {
@@ -194,23 +194,22 @@ body {
 }
 
 
-
 /*INPUTS*/
 
-input{
+input {
     border-radius: 0.5rem;
     border: none;
     min-height: 1.25rem;
 
 }
 
-input:focus{
+input:focus {
     outline: none;
     border: 0.5px solid var(--secondary);
     box-shadow: var(--shadow);
 }
 
-.button-primary{
+.button-primary {
     border-radius: 1.25rem;
     font-size: 1.75rem;
     font-family: Raleway sans-serif;
@@ -223,6 +222,14 @@ input:focus{
     cursor: pointer;
 }
 
-.button-primary:hover{
+.button-primary:hover {
     box-shadow: var(--shadow);
+}
+.button-primary:focus{
+    outline: none;
+}
+
+.button-primary-disabled{
+    background: var(--text-disabled)!important;
+    border-color: var(--text-disabled)!important;
 }

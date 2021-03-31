@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="/root.css">
     <link rel="stylesheet" href="/style/objects.css">
     <link rel="stylesheet" href="/style/itemCard.css">
+
 </head>
-<body>
+<body onload="getItemsInitial()">
 <%- include("../../components/navigation/navbar") %>
 <main>
 
@@ -35,15 +36,16 @@
             <h5>Pret</h5>
             <div class="filter-values" id="price-range">
                 <h6 class="price-range-label">De la</h6>
-                <input class="price-range-input" type="number" value="0"/>
+                <input class="price-range-input" type="number" id="price-range-min" value="0" onchange="onMinPriceFilterChange(event)"/>
                 <h6 class="price-range-label">pana la</h6>
-                <input class="price-range-input" type="number" value="0">
+                <input class="price-range-input" id="price-range-max" type="number" value="0" onchange="onMaxPriceFilterChange(event)" />
             </div>
             <h6 id="price-range-hint">0 inseamna nesetat</h6>
         </div>
-        <button id="filter-submit" class="button-primary">Filtreaza</button>
+<!--        TODO: Add the disabled state-->
+        <button id="filter-submit" class="button-primary" onclick="applyFilters(event)">Filtreaza</button>
     </aside>
-    <article>
+    <article id="item-page">
         <% items.forEach(item=>{ %>
             <%- include('../../components/item/itemCard',{item:item}) %>
         <% }); %>
@@ -53,4 +55,5 @@
 </main>
 
 </body>
+<script src="/script/objects.js" ></script>
 </html>

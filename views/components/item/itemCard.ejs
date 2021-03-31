@@ -1,5 +1,5 @@
 
-<div class="card">
+<div class="card" id="<%=item.id%>">
     <img alt="item thumbnail" class="card-thumbnail" src="<%= item.thumbnailUrl %>"/>
     <h6 class="card-title"><%= item.name.toString() > 36 ? item.name.toString().substring(0, 33) + "..." : item.name.toString() %></h6>
     <h5 class="card-price"><%= item.price %> lei</h5>
