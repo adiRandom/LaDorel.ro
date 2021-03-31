@@ -7,6 +7,7 @@
     padding: 0.5rem;
     border-radius: 1rem;
     transition: box-shadow 0.1s linear;
+    cursor: pointer;
 }
 
 .card-thumbnail{

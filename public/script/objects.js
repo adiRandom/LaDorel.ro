@@ -77,9 +77,16 @@ function openItemModal(e) {
     document.querySelector("#item-modal").style.display = "flex";
 }
 
+function closeModal(e){
+    //Check for bubbling
+    if(e.target === e.currentTarget)
+        document.querySelector("#item-modal").style.display = "none"
+}
+
 //Register the events listeners
 
 document.querySelector("#price-range-min").addEventListener("change", onMinPriceFilterChange)
 document.querySelector("#price-range-max").addEventListener("change", onMaxPriceFilterChange)
 document.querySelector("#filter-submit").addEventListener("click", applyFilters)
 document.querySelectorAll(".card").forEach(el => el.addEventListener("click", openItemModal))
+document.querySelector("#item-modal").addEventListener("click",closeModal)
