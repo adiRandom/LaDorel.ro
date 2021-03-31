@@ -8,11 +8,20 @@
       "description": "Un ciocan din colecita Esential. Ciocanul de care oricine are nevoie in viata lui",
       "rating": 5,
       "price": 20,
-      "techSpecs": {
-        "Material maner": "lemn",
-        "Greutate": "100g",
-        "Material cap": "fier"
-      }
+      "techSpecs": [
+        [
+          "Material maner",
+          "lemn"
+        ],
+        [
+          "Greutate",
+          "100g"
+        ],
+        [
+          "Material cap",
+          "fier"
+        ]
+      ]
     }
   ]
 }

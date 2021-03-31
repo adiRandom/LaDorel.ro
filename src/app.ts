@@ -47,6 +47,11 @@ app.get("/masini", async (req, res) => {
     })
 })
 
+app.get("/api/unelte", async(req, res) => {
+    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    res.json(items);
+})
+
 
 app.listen(3000);
 console.log("Started")

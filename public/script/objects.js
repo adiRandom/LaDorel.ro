@@ -8,7 +8,7 @@ const dataStore = {
 
 function getItemsInitial() {
     //Get all the item cards rendered by the server
-    document.querySelectorAll(".card").forEach((value,key,parent)=>dataStore.items.push(value))
+    fetch("http://localhost:3000/api/unelte").then(res => res.json()).then(items => dataStore.items = items)
 //    TODO: Implement pagination
 }
 
@@ -21,10 +21,9 @@ function renderItemsInFeed(items) {
 
 
 function applyFilters() {
-    const items = dataStore.items.filter(card => {
+    const items = dataStore.items.filter(item => {
         //Get the items that are in the price range
-        const priceText = card.querySelector(".card-price").textContent;
-        const price = Number.parseFloat(priceText.substring(0, priceText.length - 3));
+        const price = item.price
         if (dataStore.filter.minPrice > 0 && price < dataStore.filter.minPrice)
             return false;
         if (dataStore.filter.maxPrice > 0 && price > dataStore.filter.maxPrice)
@@ -53,8 +52,34 @@ function onMaxPriceFilterChange(e) {
     }
 }
 
+
+function openItemModal(e) {
+    const itemId = e.currentTarget.getAttribute("id");
+    const item = dataStore.items.find(item => item.id.toString() === itemId)
+    console.log(item)
+    //Insert the item data into the modal
+    document.querySelector("#item-modal-title").innerHTML = item.name;
+    document.querySelector("#item-modal-image").setAttribute("src", item.image);
+    document.querySelector("#item-modal-description").innerHTML = item.description;
+    for (const [key, spec] of item.techSpecs) {
+        const row = document.createElement("tr");
+        const rowKey = document.createElement("td");
+        const rowSpec = document.createElement("td");
+        rowKey.innerHTML = key;
+        rowSpec.innerHTML = spec;
+        row.appendChild(rowKey);
+        row.appendChild(rowSpec);
+        document.querySelector("#item-modal-specs").appendChild(row)
+    }
+    document.querySelector("#item-modal-price").innerHTML = `${item.price} lei`
+
+//    Make the modal visible
+    document.querySelector("#item-modal").style.display = "flex";
+}
+
 //Register the events listeners
 
-document.querySelector("#price-range-min").addEventListener("change",onMinPriceFilterChange)
-document.querySelector("#price-range-max").addEventListener("change",onMaxPriceFilterChange)
-document.querySelector("#filter-submit").addEventListener("click",applyFilters)
+document.querySelector("#price-range-min").addEventListener("change", onMinPriceFilterChange)
+document.querySelector("#price-range-max").addEventListener("change", onMaxPriceFilterChange)
+document.querySelector("#filter-submit").addEventListener("click", applyFilters)
+document.querySelectorAll(".card").forEach(el => el.addEventListener("click", openItemModal))

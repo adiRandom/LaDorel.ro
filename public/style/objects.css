@@ -73,3 +73,48 @@ footer {
 #filter-submit{
     margin-top: auto;
 }
+
+/*Item modal*/
+
+#item-modal{
+    position: fixed;
+    top:0;
+    left: 0;
+    width:100vw;
+    height:100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+}
+
+#item-modal-card{
+    height: 80%;
+    width:60%;
+    background: var(--top);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+}
+
+#item-modal-image-wrapper{
+    width: 50%;
+}
+
+#item-modal-image{
+    width: 100%;
+}
+
+#item-modal-info{
+    height: 100%;
+}
+
+#item-modal-data{
+    overflow-y: auto;
+}
+
+#item-modal-add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

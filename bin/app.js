@@ -68,5 +68,9 @@ app.get("/masini", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }
     });
 }));
+app.get("/api/unelte", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
+    res.json(items);
+}));
 app.listen(3000);
 console.log("Started");
