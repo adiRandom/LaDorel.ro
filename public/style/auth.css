@@ -1,0 +1,42 @@
+main{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+article{
+    width: 30%;
+    background: var(--top);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    align-items: center;
+}
+
+#header{
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+h4{
+    text-transform: uppercase;
+}
+
+.input{
+    margin-bottom: 1rem;
+    width: 50%;
+}
+
+.auth-field{
+
+    font-size: 1.5rem;
+}
+
+.error{
+    margin-top: 0.5rem;
+    color:var(--error)
+}

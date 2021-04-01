@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="ro">
+
+<head>
+    <meta charset="utf-8">
+    <title>LaDorel.ro</title>
+    <meta name="description" content="Demo eCommerce platform">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="LaDorer.ro">
+    <meta property="og:type" content="application/eshop">
+    <!--  TODO: Add url and image-->
+    <meta property="og:url" content="">
+    <meta property="og:image" content="Logo.png">
+
+
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,600&display=swap"
+          rel="stylesheet">
+    <meta name="theme-color" content="#6BF564">
+    <link rel="stylesheet" href="/root.css">
+    <link rel="stylesheet" href="/style/auth.css">
+</head>
+
+<body>
+
+<%- include("../../components/navigation/navbar") %>
+<main>
+    <article>
+        <section id="header">
+            <h4>Intra in contul tau</h4>
+            <h4> sau creaza-ti unul nou</h4>
+        </section>
+        <section class="input">
+            <input class="auth-field" id="email" type="email" placeholder="Email"/>
+            <h6 class="error" id="email-error"></h6>
+        </section>
+        <section class="input">
+            <input class="auth-field" id="password" type="password" placeholder="Password">
+            <h6 class="error" id="password-error"></h6>
+        </section>
+        <button id="auth-submit" class="button-primary">Intra in cont</button>
+    </article>
+</main>
+</body>
+
+<script src="/script/dataStore.js"></script>
+<script src="/script/auth.js"></script>
+</html>

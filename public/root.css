@@ -200,7 +200,8 @@ input {
     border-radius: 0.5rem;
     border: none;
     min-height: 1.25rem;
-
+    font-family: Raleway sans-serif;
+    font-size: 1rem;
 }
 
 input:focus {

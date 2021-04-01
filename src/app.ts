@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path'
 import {Item} from "./models/Item";
+import cors from "cors"
 
 const app = express();
 // set the view engine to ejs
@@ -12,9 +13,10 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 
 app.use(express.json())
+app.use(cors())
 
 
-// Routes
+// View Routes
 app.get('/', async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
     res.render("pages/home/index", {item: items[0]})
@@ -47,9 +49,22 @@ app.get("/masini", async (req, res) => {
     })
 })
 
+app.get("/auth",async (req,res)=>{
+    res.render("pages/user/auth")
+})
+
+//API routes
+
+//GET the tools category
 app.get("/api/unelte", async(req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
     res.json(items);
+})
+
+//Authenticate a user
+
+app.post("/api/auth",async(req,res)=>{
+    const {email,password} = req.body;
 })
 
 

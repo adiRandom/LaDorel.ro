@@ -33,13 +33,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
+const cors_1 = __importDefault(require("cors"));
 const app = express_1.default();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 //set the public folder
 app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
 app.use(express_1.default.json());
-// Routes
+app.use(cors_1.default());
+// View Routes
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
     res.render("pages/home/index", { item: items[0] });
@@ -68,9 +70,20 @@ app.get("/masini", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }
     });
 }));
+app.get("/auth", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.render("pages/user/auth");
+}));
+//API routes
+//GET the tools category
 app.get("/api/unelte", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
     res.json(items);
+}));
+//Authenticate a user
+app.post("/api/auth", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
+    const { email, password } = JSON.parse(req.body);
+    console.log(email);
 }));
 app.listen(3000);
 console.log("Started");
