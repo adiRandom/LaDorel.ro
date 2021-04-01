@@ -35,7 +35,7 @@
 
 #item-modal-info{
     height: 100%;
-    padding-left:2.5rem;
+    padding:0 2.5rem;
 }
 
 #item-modal-data{
@@ -46,4 +46,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 3rem;
+    width: 30%;
+}
+
+
+.item-modal-spec-text-value{
+    margin-left: 1rem;
+}
+
+.item-modal-spec-text-key {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.item-modal-spec:nth-child(2n+1){
+    background: rgba(203,124,206,0.3);
+}
+
+.item-modal-spec:nth-child(2n+1){
+    background: rgba(136,255,130,0.3)
+}
+
+.item-modal-spec-value{
+    width: 100%;
+}
+
+#item-modal-specs-table{
+    border-spacing: 0;
 }

@@ -1,4 +1,3 @@
-
 function getItemsInitial() {
     //Get all the item cards rendered by the server
     fetch("http://localhost:3000/api/unelte").then(res => res.json()).then(items => dataStore.items = items)
@@ -8,7 +7,7 @@ function getItemsInitial() {
 function renderItemsInFeed(items) {
     const page = document.querySelector("#item-page");
     //Delete the items currently in this page and add the new items
-    page.childNodes.forEach(el => page.removeChild(el))
+    page.innerHTML = ""
     items.forEach(item => page.appendChild(item))
 }
 
