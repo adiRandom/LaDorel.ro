@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path'
 import {Item} from "./models/Item";
 import cors from "cors"
+import authenticate from "./services/auth";
 
 const app = express();
 // set the view engine to ejs
@@ -49,22 +50,29 @@ app.get("/masini", async (req, res) => {
     })
 })
 
-app.get("/auth",async (req,res)=>{
+app.get("/auth", async (req, res) => {
     res.render("pages/user/auth")
 })
 
 //API routes
 
 //GET the tools category
-app.get("/api/unelte", async(req, res) => {
+app.get("/api/unelte", async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
     res.json(items);
 })
 
 //Authenticate a user
 
-app.post("/api/auth",async(req,res)=>{
-    const {email,password} = req.body;
+app.post("/api/auth", async (req, res) => {
+    const {email, password} = req.body;
+    const token = authenticate(email, password);
+    if (token !== "") {
+        //    Valid auth, respond with the token
+        res.status(200).json({token})
+    } else {
+        res.status(401).json({error: "Email sau parola gresita"})
+    }
 })
 
 

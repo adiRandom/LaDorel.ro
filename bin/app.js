@@ -34,6 +34,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
+const auth_1 = __importDefault(require("./services/auth"));
 const app = express_1.default();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -81,9 +82,15 @@ app.get("/api/unelte", (req, res) => __awaiter(void 0, void 0, void 0, function*
 }));
 //Authenticate a user
 app.post("/api/auth", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    const { email, password } = JSON.parse(req.body);
-    console.log(email);
+    const { email, password } = req.body;
+    const token = auth_1.default(email, password);
+    if (token !== "") {
+        //    Valid auth, respond with the token
+        res.status(200).json({ token });
+    }
+    else {
+        res.status(401).json({ error: "Email sau parola gresita" });
+    }
 }));
 app.listen(3000);
 console.log("Started");

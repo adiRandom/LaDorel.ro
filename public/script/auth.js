@@ -6,12 +6,12 @@ function submitForm() {
     let error = false;
     if (!email.toString().match(emailRegex)) {
         //    invalid email
-        document.querySelector("#email-error").innerHTML = "Invalid email"
+        document.querySelector("#email-error").innerHTML = "Email invalid"
         error = true;
     }
     if (password.toString().length < 8) {
         //    Invalid password
-        document.querySelector("#password-error").innerHTML = "Password is shorter than 8 characters"
+        document.querySelector("#password-error").innerHTML = "Parola are mai putin de 8 caractere"
         error = true;
     }
 
@@ -23,21 +23,38 @@ function submitForm() {
                 email,
                 password
             }),
-            headers:{"Content-Type":"application/json"}
-        })
+            headers: {"Content-Type": "application/json"}
+        }).then(res => res.json()).then(res => {
+            if (res.error) {
+                //There was an error
+                document.querySelector("#email-error").innerHTML = res.error;
+            } else {
+                //Authentication was successful, save the token then redirect to home
+                localStorage.setItem("token", res.token);
+                window.location.replace("/")
+            }
+        }).catch(_ => alert("A aparut o eroare. Incercati mai tarziu."))
     }
 
 }
 
-function clearErrors(field){
-    if(field === "email"){
+function clearErrors(field) {
+    if (field === "email") {
         document.querySelector("#email-error").innerHTML = ""
     }
-    if(field === "password"){
+    if (field === "password") {
         document.querySelector("#password-error").innerHTML = ""
     }
 }
 
+function submitOnEnter(e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        submitForm()
+    }
+}
+
 document.querySelector("#auth-submit").addEventListener("click", submitForm)
-document.querySelector("#email").addEventListener("change",()=>clearErrors("email"))
-document.querySelector("#password").addEventListener("change",()=>clearErrors("password"))
+document.querySelector("#email").addEventListener("change", () => clearErrors("email"))
+document.querySelector("#password").addEventListener("change", () => clearErrors("password"))
+document.querySelector("#email").addEventListener("keyup", submitOnEnter);
+document.querySelector("#password").addEventListener("keyup", submitOnEnter);
