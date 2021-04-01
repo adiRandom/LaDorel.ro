@@ -22,13 +22,13 @@
     <link rel="stylesheet" href="/root.css">
     <link rel="stylesheet" href="/style/index.css">
     <link rel="stylesheet" href="/style/itemCard.css">
-
+    <link rel="stylesheet" href="/style/itemModal.css">
 </head>
 
-<body>
+<body onload="getHomeItemsInitial()">
 
 <%-include("../../components/navigation/navbar")%>
-
+<%-include("../../components/item/itemModal")%>
 <main>
     <section>
         <h1 class="home-section-header">
@@ -50,4 +50,7 @@
 
 </body>
 
+<script src="/script/dataStore.js"></script>
+<script src="/script/index.js"></script>
+<script src="/script/itemModal.js"></script>
 </html>

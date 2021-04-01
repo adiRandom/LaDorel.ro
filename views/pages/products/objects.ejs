@@ -21,38 +21,12 @@
     <link rel="stylesheet" href="/root.css">
     <link rel="stylesheet" href="/style/objects.css">
     <link rel="stylesheet" href="/style/itemCard.css">
-
+    <link rel="stylesheet" href="/style/itemModal.css">
 </head>
 <body onload="getItemsInitial()">
 <%- include("../../components/navigation/navbar") %>
 <main>
-    <!--    The modal for seeing the description of an item-->
-<!--    TOOD: Add this on home as well-->
-    <div id="item-modal">
-        <div id="item-modal-card">
-            <div id="item-modal-image-wrapper">
-                <img id="item-modal-image" src="" alt="item-image"/>
-            </div>
-            <div id="item-modal-info">
-                <h2 id="item-modal-title"></h2>
-                <!--            TODO: Add rating-->
-                <div id="item-modal-data">
-                    <h5 id="item-modal-description"></h5>
-                    <h3>Specificatii</h3>
-                    <table>
-                        <tbody id="item-modal-specs">
-
-                        </tbody>
-                    </table>
-                </div>
-                <button id="item-modal-add" class="button-primary">
-                    <h5 id="item-modal-price"></h5>
-                    <h6>Adauga in cos</h6>
-                </button>
-            </div>
-        </div>
-    </div>
-
+    <%-include("../../components/item/itemModal")%>
     <header>
         <h1><%= meta.location.toUpperCase() %></h1>
     </header>
@@ -83,5 +57,7 @@
 </main>
 
 </body>
+<script src="/script/dataStore.js"></script>
 <script src="/script/objects.js"></script>
+<script src="/script/itemModal.js"></script>
 </html>
