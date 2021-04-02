@@ -1,6 +1,8 @@
 function getItemsInitial() {
     //Get all the item cards rendered by the server
     fetch("http://localhost:3000/api/unelte").then(res => res.json()).then(items => dataStore.items = items)
+    //Also get the nodes
+    document.querySelectorAll(".card").forEach(el => dataStore.itemNodes.push(el))
 //    TODO: Implement pagination
 }
 
@@ -21,7 +23,7 @@ function applyFilters() {
         if (dataStore.filter.maxPrice > 0 && price > dataStore.filter.maxPrice)
             return false;
         return true;
-    })
+    }).map(item => dataStore.itemNodes.find(node => node.id === item.id.toString()))
 
     renderItemsInFeed(items);
 }
