@@ -2,7 +2,8 @@ import express from 'express';
 import path from 'path'
 import {Item} from "./models/Item";
 import cors from "cors"
-import authenticate from "./services/auth";
+import authenticate, {getUser} from "./services/auth";
+import {addItemToCart, getCart, removeItemFromCart} from "./services/cart";
 
 const app = express();
 // set the view engine to ejs
@@ -16,6 +17,25 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.json())
 app.use(cors())
 
+app.use((req, res, next) => {
+    // Check authentication on
+    if (!["POST", "PUT", "DELETE"].find(verb => req.method.toUpperCase() === verb)) {
+        next();
+        return;
+    }
+    const token = req.cookies.token;
+    if (!token || token === "") {
+        res.status(403);
+        return;
+    }
+    if (!getUser(token)) {
+        res.status(401);
+        return;
+    }
+
+    next();
+})
+
 
 // View Routes
 app.get('/', async (req, res) => {
@@ -26,6 +46,7 @@ app.get('/', async (req, res) => {
 app.get("/unelte", async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
     res.render("pages/products/objects", {
+        initialCart: items,
         items, meta: {
             location: "unelte"
         }
@@ -76,8 +97,22 @@ app.post("/api/auth", async (req, res) => {
 })
 
 app.get("/api/cart", async (req, res) => {
-    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const user = getUser(req.cookies.token);
+
+    const items = getCart(user?.id ?? "")
     res.json({objects: items})
+})
+
+app.post("/api/cart", async (req, res) => {
+    const user = getUser(req.cookies.token);
+    const item = req.body;
+    addItemToCart(user?.id ?? "", item)
+})
+
+app.delete("api/cart", async (req, res) => {
+    const user = getUser(req.cookies.token);
+    const {id} = req.body;
+    removeItemFromCart(user?.id ?? "", id)
 })
 
 

@@ -34,7 +34,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
-const auth_1 = __importDefault(require("./services/auth"));
+const auth_1 = __importStar(require("./services/auth"));
+const cart_1 = require("./services/cart");
 const app = express_1.default();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -42,6 +43,23 @@ app.set('view engine', 'ejs');
 app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
 app.use(express_1.default.json());
 app.use(cors_1.default());
+app.use((req, res, next) => {
+    // Check authentication on
+    if (!["POST", "PUT", "DELETE"].find(verb => req.method.toUpperCase() === verb)) {
+        next();
+        return;
+    }
+    const token = req.cookies.token;
+    if (!token || token === "") {
+        res.status(403);
+        return;
+    }
+    if (!auth_1.getUser(token)) {
+        res.status(401);
+        return;
+    }
+    next();
+});
 // View Routes
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
@@ -50,6 +68,7 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 app.get("/unelte", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
     res.render("pages/products/objects", {
+        initialCart: items,
         items, meta: {
             location: "unelte"
         }
@@ -91,6 +110,24 @@ app.post("/api/auth", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     else {
         res.status(401).json({ error: "Email sau parola gresita" });
     }
+}));
+app.get("/api/cart", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const user = auth_1.getUser(req.cookies.token);
+    const items = cart_1.getCart((_a = user === null || user === void 0 ? void 0 : user.id) !== null && _a !== void 0 ? _a : "");
+    res.json({ objects: items });
+}));
+app.post("/api/cart", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    const user = auth_1.getUser(req.cookies.token);
+    const item = req.body;
+    cart_1.addItemToCart((_b = user === null || user === void 0 ? void 0 : user.id) !== null && _b !== void 0 ? _b : "", item);
+}));
+app.delete("api/cart", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _c;
+    const user = auth_1.getUser(req.cookies.token);
+    const { id } = req.body;
+    cart_1.removeItemFromCart((_c = user === null || user === void 0 ? void 0 : user.id) !== null && _c !== void 0 ? _c : "", id);
 }));
 app.listen(3000);
 console.log("Started");

@@ -47,6 +47,7 @@ function buy() {
 
 function addToCart(event) {
     //Get the item
+    //TODO: Store empty
     const itemId = Number.parseInt(event.target.getAttribute("data-id"))
     const item = dataStore.items.find(val => val.id === itemId)
 

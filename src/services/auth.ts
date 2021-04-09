@@ -31,7 +31,8 @@ export default function authenticate(email: string, password: string): string {
             email,
             hash: _hash,
             salt,
-            token
+            token,
+            id: getRandomString(32)
         }
         userStore.push(user)
         return token;
@@ -42,4 +43,8 @@ export default function authenticate(email: string, password: string): string {
         else
             return ""
     }
+}
+
+export function getUser(token: string): User | undefined {
+    return userStore.find(user => user.token === token)
 }
