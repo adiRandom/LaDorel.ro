@@ -69,7 +69,7 @@ app.post("/api/auth", async (req, res) => {
     const token = authenticate(email, password);
     if (token !== "") {
         //    Valid auth, respond with the token
-        res.status(200).json({token})
+        res.status(200).cookie("session",token)
     } else {
         res.status(401).json({error: "Email sau parola gresita"})
     }

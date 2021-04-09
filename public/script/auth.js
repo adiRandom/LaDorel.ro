@@ -29,8 +29,7 @@ function submitForm() {
                 //There was an error
                 document.querySelector("#email-error").innerHTML = res.error;
             } else {
-                //Authentication was successful, save the token then redirect to home
-                localStorage.setItem("token", res.token);
+                //Authentication was successful,redirect to home
                 window.location.replace("/")
             }
         }).catch(_ => alert("A aparut o eroare. Incercati mai tarziu."))
