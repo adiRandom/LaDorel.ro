@@ -75,6 +75,11 @@ app.post("/api/auth", async (req, res) => {
     }
 })
 
+app.get("/api/cart", async (req, res) => {
+    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    res.json({objects: items})
+})
+
 
 app.listen(3000);
 console.log("Started")

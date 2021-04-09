@@ -1,6 +1,6 @@
 const dataStore = {
     items: [],
-    itemNodes:[],
+    itemNodes: [],
     filter: {
         minPrice: 0,
         maxPrice: 0

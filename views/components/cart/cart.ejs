@@ -3,8 +3,8 @@
     <div class="cart-dropdown">
         <ul class="cart-list">
             <% initialCart.forEach(item=>{ %>
-                <li class="cart-item">
-                    <img src="/img/remove.svg" class="cart-item-remove"/>
+                <li class="cart-item" id="cart-item-<%= item.id %>">
+                    <img src="/img/remove.svg" class="cart-item-remove" data-id="<%= item.id %>" alt="remove-button"/>
                     <img class="cart-item-image" src="<%= item.thumbnailUrl %>" alt="item-thumbnail"/>
                     <div class="cart-item-info">
                         <h5 class="cart-item-name"><%= item.name.toString() > 36 ? item.name.toString().substring(0, 33) + "..." : item.name.toString() %></h5>

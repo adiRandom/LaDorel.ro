@@ -31,6 +31,10 @@ function openItemModal(e) {
     }
     document.querySelector("#item-modal-price").innerHTML = `${item.price} lei`
 
+//    Add the id of the item to the buy button
+
+    document.querySelector("#item-modal-add").setAttribute("data-id", itemId)
+
 //    Make the modal visible
     document.querySelector("#item-modal").style.display = "flex";
 }
@@ -43,3 +47,4 @@ function closeModal(e) {
 
 document.querySelectorAll(".card").forEach(el => el.addEventListener("click", openItemModal))
 document.querySelector("#item-modal").addEventListener("click", closeModal)
+document.querySelector("#item-modal-add").addEventListener("click", closeModal)
