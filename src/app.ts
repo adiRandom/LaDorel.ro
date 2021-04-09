@@ -20,7 +20,7 @@ app.use(cors())
 // View Routes
 app.get('/', async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
-    res.render("pages/home/index", {item: items[0]})
+    res.render("pages/home/index", {item: items[0], initialCart: items})
 })
 
 app.get("/unelte", async (req, res) => {
@@ -69,7 +69,7 @@ app.post("/api/auth", async (req, res) => {
     const token = authenticate(email, password);
     if (token !== "") {
         //    Valid auth, respond with the token
-        res.status(200).cookie("session",token)
+        res.status(200).cookie("session", token)
     } else {
         res.status(401).json({error: "Email sau parola gresita"})
     }

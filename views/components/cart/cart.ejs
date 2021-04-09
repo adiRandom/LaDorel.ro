@@ -1,0 +1,18 @@
+<li class="nav-item cart">
+    Cos
+    <div class="cart-dropdown">
+        <ul class="cart-list">
+            <% initialCart.forEach(item=>{ %>
+                <li class="cart-item">
+                    <img src="/img/remove.svg" class="cart-item-remove"/>
+                    <img class="cart-item-image" src="<%= item.thumbnailUrl %>" alt="item-thumbnail"/>
+                    <div class="cart-item-info">
+                        <h5 class="cart-item-name"><%= item.name.toString() > 36 ? item.name.toString().substring(0, 33) + "..." : item.name.toString() %></h5>
+                        <h6 class="cart-item-price"><%= item.price %> lei</h6>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+        <button class="button-primary" id="buy-button">Cumpara</button>
+    </div>
+</li>

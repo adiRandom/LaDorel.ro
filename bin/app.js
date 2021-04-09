@@ -45,7 +45,7 @@ app.use(cors_1.default());
 // View Routes
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
-    res.render("pages/home/index", { item: items[0] });
+    res.render("pages/home/index", { item: items[0], initialCart: items });
 }));
 app.get("/unelte", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const items = (yield Promise.resolve().then(() => __importStar(require("./fixtures/trending.json")))).objects;
@@ -86,7 +86,7 @@ app.post("/api/auth", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const token = auth_1.default(email, password);
     if (token !== "") {
         //    Valid auth, respond with the token
-        res.status(200).json({ token });
+        res.status(200).cookie("session", token);
     }
     else {
         res.status(401).json({ error: "Email sau parola gresita" });

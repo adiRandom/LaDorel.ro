@@ -16,7 +16,6 @@
                     <li class="nav-menu-dropdown-item">
                         <a href="/masini"><h5>Masini</h5></a>
                     </li>
-                    <li class="nav-menu-dropdown-item"><h5>Dorei</h5></li>
                 </ul>
             </div>
             <img id="nav-menu-icon" alt="menu" src="/img/menu.svg"/>CATEGORII
@@ -24,5 +23,6 @@
         <li class="nav-item">Oferte</li>
         <li class="nav-item">Contact</li>
         <li class="nav-item"><a href="/auth">Contul tau</a></li>
+        <%- include("../cart/cart",{initialCart:initialCart}) %>
     </ul>
 </nav>
