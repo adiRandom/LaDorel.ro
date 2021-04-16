@@ -32,7 +32,9 @@ export default function authenticate(email: string, password: string): string {
             hash: _hash,
             salt,
             token,
-            id: getRandomString(32)
+            id: getRandomString(32),
+            firstName: "",
+            lastName: ""
         }
         userStore.push(user)
         return token;
@@ -47,4 +49,13 @@ export default function authenticate(email: string, password: string): string {
 
 export function getUser(token: string): User | undefined {
     return userStore.find(user => user.token === token)
+}
+
+export function updateUser(token: string, firstName: string, lastName: string) {
+    const index = userStore.findIndex(user => user.token === token);
+    userStore[index] = {
+        ...userStore[index],
+        firstName,
+        lastName
+    }
 }

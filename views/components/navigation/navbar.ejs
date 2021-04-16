@@ -22,7 +22,11 @@
         </li>
         <li class="nav-item">Oferte</li>
         <li class="nav-item">Contact</li>
-        <li class="nav-item"><a href="/auth">Contul tau</a></li>
-        <%- include("../cart/cart",{initialCart:initialCart}) %>
+        <li class="nav-item"><a
+                    href="<%= user ? "/user" : "/auth" %>"><%= user ? !!user.firstName ? user.firstName : user.email : "Contul tau" %></a>
+        </li>
+        <% if(user){ %>
+            <%- include("../cart/cart",{initialCart:initialCart}) %>
+        <% } %>
     </ul>
 </nav>

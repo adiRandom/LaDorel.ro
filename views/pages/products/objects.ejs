@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/style/itemModal.css">
 </head>
 <body onload="getItemsInitial()">
-<%- include("../../components/navigation/navbar") %>
+<%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
 <main>
     <%- include("../../components/item/itemModal") %>
     <header>

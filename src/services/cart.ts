@@ -17,6 +17,8 @@ export function removeItemFromCart(userId: string, itemId: number) {
 }
 
 
-export function getCart(userId:string): Item[] {
+export function getCart(userId?: string): Item[] {
+    if (!userId)
+        return [];
     return cartStore[userId] ?? [];
 }

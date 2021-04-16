@@ -3,5 +3,7 @@ export default interface User {
     hash: string,
     salt: string,
     token: string,
-    id: string
+    id: string,
+    firstName: string,
+    lastName: string
 }

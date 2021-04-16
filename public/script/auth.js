@@ -24,7 +24,8 @@ function submitForm() {
                 password
             }),
             headers: {"Content-Type": "application/json"}
-        }).then(res => res.json()).then(res => {
+        }).then(res => res.ok?res:res.json()).then(res => {
+            console.log(res)
             if (res.error) {
                 //There was an error
                 document.querySelector("#email-error").innerHTML = res.error;
@@ -32,7 +33,10 @@ function submitForm() {
                 //Authentication was successful,redirect to home
                 window.location.replace("/")
             }
-        }).catch(_ => alert("A aparut o eroare. Incercati mai tarziu."))
+        }).catch(e => {
+            console.log(e);
+            alert("A aparut o eroare. Incercati mai tarziu.")
+        })
     }
 
 }

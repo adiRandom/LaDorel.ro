@@ -20,32 +20,26 @@
           rel="stylesheet">
     <meta name="theme-color" content="#6BF564">
     <link rel="stylesheet" href="/root.css">
-    <link rel="stylesheet" href="/style/index.css">
-    <link rel="stylesheet" href="/style/itemCard.css">
-    <link rel="stylesheet" href="/style/itemModal.css">
+    <link rel="stylesheet" href="/style/user.css">
 </head>
 
-<body onload="getHomeItemsInitial()">
+<body>
 
-<%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
-<%-include("../../components/item/itemModal")%>
+<%- include("../../components/navigation/navbar",{initialCart:initialCart}) %>
 <main>
     <section>
-        <h1 class="home-section-header">
-            Noutati
-        </h1>
-        <%-include('../../components/item/itemCard',{item:item})%>
+        <h1>Editeaza-ti profilul</h1>
+        <form method="post" action="/api/user">
+            <input value="<%=user.lastName??""%>" placeholder=Nume" name="nume"/>
+            <input value="<%=user.firstName??""%>" placeholder= "Prenume" name="prenume"/>
+            <input value="Trimite" type="submit"/>
+        </form>
     </section>
     <section>
-        <h1 class="home-section-header">
-            Recomandate
-        </h1>
+        <h1>Iesi din cont</h1>
+        <button class="button-primary" id="log-out">Iesi din cont</button>
     </section>
-    <section>
-        <h1 class="home-section-header">
-            Cautate
-        </h1>
-    </section>
+
 </main>
 
 </body>
@@ -54,4 +48,5 @@
 <script src="/script/index.js"></script>
 <script src="/script/cart.js"></script>
 <script src="/script/itemModal.js"></script>
+<script src="/script/user.js"></script>
 </html>

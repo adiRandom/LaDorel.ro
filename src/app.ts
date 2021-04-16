@@ -2,8 +2,9 @@ import express from 'express';
 import path from 'path'
 import {Item} from "./models/Item";
 import cors from "cors"
-import authenticate, {getUser} from "./services/auth";
+import authenticate, {getUser, updateUser} from "./services/auth";
 import {addItemToCart, getCart, removeItemFromCart} from "./services/cart";
+import cookieParser from 'cookie-parser'
 
 const app = express();
 // set the view engine to ejs
@@ -15,15 +16,17 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 
 app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser())
 app.use(cors())
 
 app.use((req, res, next) => {
     // Check authentication on
-    if (!["POST", "PUT", "DELETE"].find(verb => req.method.toUpperCase() === verb)) {
+    if (!["POST", "PUT", "DELETE"].find(verb => req.method.toUpperCase() === verb) || req.path === "/api/auth") {
         next();
         return;
     }
-    const token = req.cookies.token;
+    const token = req.cookies?.session;
     if (!token || token === "") {
         res.status(403);
         return;
@@ -40,13 +43,18 @@ app.use((req, res, next) => {
 // View Routes
 app.get('/', async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
-    res.render("pages/home/index", {item: items[0], initialCart: items})
+    const user = getUser(req.cookies?.session) ?? null ?? null
+    const initialCart = getCart(user?.id) ?? null;
+    res.render("pages/home/index", {item: items[0], initialCart: initialCart, user: user})
 })
 
 app.get("/unelte", async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const user = getUser(req.cookies?.session) ?? null
+    const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/objects", {
-        initialCart: items,
+        initialCart,
+        user,
         items, meta: {
             location: "unelte"
         }
@@ -55,7 +63,10 @@ app.get("/unelte", async (req, res) => {
 
 app.get("/unelte-de-putere", async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const user = getUser(req.cookies?.session) ?? null
+    const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/objects", {
+        initialCart, user,
         items, meta: {
             location: "unelte de putere"
         }
@@ -64,7 +75,10 @@ app.get("/unelte-de-putere", async (req, res) => {
 
 app.get("/masini", async (req, res) => {
     const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const user = getUser(req.cookies?.session) ?? null
+    const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/objects", {
+        initialCart, user,
         items, meta: {
             location: "masini"
         }
@@ -72,7 +86,22 @@ app.get("/masini", async (req, res) => {
 })
 
 app.get("/auth", async (req, res) => {
-    res.render("pages/user/auth")
+    const user = getUser(req.cookies?.session) ?? null
+    if (user) {
+        res.redirect("/user")
+    } else {
+        res.render("pages/user/auth", {user: null, initialCart: null})
+    }
+})
+
+app.get("/user", async (req, res) => {
+    const user = getUser(req.cookies?.session) ?? null
+    const initialCart = getCart(user?.id) ?? null;
+    if (!user) {
+        res.redirect("/auth")
+    } else {
+        res.render("pages/user/user", {user, initialCart})
+    }
 })
 
 //API routes
@@ -88,9 +117,10 @@ app.get("/api/unelte", async (req, res) => {
 app.post("/api/auth", async (req, res) => {
     const {email, password} = req.body;
     const token = authenticate(email, password);
+    console.log(token)
     if (token !== "") {
         //    Valid auth, respond with the token
-        res.status(200).cookie("session", token)
+        res.cookie("session", token).sendStatus(200);
     } else {
         res.status(401).json({error: "Email sau parola gresita"})
     }
@@ -109,10 +139,17 @@ app.post("/api/cart", async (req, res) => {
     addItemToCart(user?.id ?? "", item)
 })
 
-app.delete("api/cart", async (req, res) => {
+app.delete("/api/cart", async (req, res) => {
     const user = getUser(req.cookies.token);
     const {id} = req.body;
     removeItemFromCart(user?.id ?? "", id)
+})
+
+app.post("/api/user", (req, res) => {
+    const {nume, prenume} = req.body;
+    const token = req.cookies.session;
+    updateUser(token, prenume, nume);
+    res.redirect("/user");
 })
 
 
