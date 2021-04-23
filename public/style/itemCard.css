@@ -1,4 +1,4 @@
-.card{
+.card {
     height: 18.25rem;
     width: 12rem;
     background: var(--top);
@@ -10,22 +10,47 @@
     cursor: pointer;
 }
 
-.card-thumbnail{
-    width: 100%;
+.card-thumbnail-section {
     margin-bottom: 1rem;
+    width: 100%;
+    position: relative;
 }
 
-.card-title{
+.card-thumbnail {
+    width: 100%;
+}
+
+.discount-ribbon {
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 97%, 33% 50%, 0 3%);
+    background: var(--secondary-dark);
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    padding: 1rem;
+}
+
+.discount-value {
+    color: var(--text-inverted);
+}
+
+.card-title {
     margin-bottom: 1rem;
     max-height: 50%;
     word-wrap: break-word;
     font-weight: 600;
 }
 
-.card-price{
+.price-section {
     margin-top: auto;
+    display: flex;
 }
 
-.card:hover{
+.card-price-slashed {
+    text-decoration-line: line-through;
+    color: var(--text-disabled);
+    margin-right: 0.5rem;
+}
+
+.card:hover {
     box-shadow: var(--shadow)
 }

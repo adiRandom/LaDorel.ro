@@ -1,6 +1,17 @@
-
-<div class="card" id="<%=item.id%>">
-    <img alt="item thumbnail" class="card-thumbnail" src="<%= item.thumbnailUrl %>"/>
+<div class="card" id="<%= item.id %>">
+    <section class="card-thumbnail-section">
+        <img alt="item thumbnail" class="card-thumbnail" src="<%= item.thumbnailUrl %>"/>
+        <% if(item.discount){ %>
+            <div class="discount-ribbon">
+                <h6 class="discount-value"><%= item.discount %></h6>
+            </div>
+        <% } %>
+    </section>
     <h6 class="card-title"><%= item.name.toString() > 36 ? item.name.toString().substring(0, 33) + "..." : item.name.toString() %></h6>
-    <h5 class="card-price"><%= item.price %> lei</h5>
+    <section class="price-section">
+        <h5 class="card-price <%= item.discount ? "card-price-slashed" : "" %>"><%= item.price %> lei</h5>
+        <% if(item.discount){ %>
+            <h5 class="discount-price"><%= item.price - (item.price * item.discount) %> lei</h5>
+        <% } %>
+    </section>
 </div>
