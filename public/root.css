@@ -92,6 +92,7 @@ body {
     position: fixed;
     width: 100vw;
     top: 0;
+    z-index: 1;
 }
 
 @keyframes logo-enter {
@@ -173,6 +174,7 @@ body {
     margin-top: 3rem;
     background: var(--surface);
     flex-direction: column;
+
 }
 
 #nav-menu-dropdown:hover {
@@ -187,6 +189,7 @@ body {
 #nav-menu-categories {
     list-style: none;
     padding: 0;
+    z-index: 1;
 }
 
 .nav-menu-dropdown-item:hover {

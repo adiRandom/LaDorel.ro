@@ -1,8 +1,7 @@
-import {Item} from "../models/Item";
 
-const cartStore: { [userId: string]: Item[] } = {}
+const cartStore = {}
 
-export function addItemToCart(userId: string, item: Item) {
+export function addItemToCart(userId, item) {
     if (cartStore[userId]) {
         cartStore[userId].push(item);
     } else {
@@ -10,14 +9,14 @@ export function addItemToCart(userId: string, item: Item) {
     }
 }
 
-export function removeItemFromCart(userId: string, itemId: number) {
+export function removeItemFromCart(userId, itemId) {
     if (!cartStore[userId])
         return;
     cartStore[userId] = cartStore[userId].filter(item => item.id !== itemId)
 }
 
 
-export function getCart(userId?: string): Item[] {
+export function getCart(userId) {
     if (!userId)
         return [];
     return cartStore[userId] ?? [];

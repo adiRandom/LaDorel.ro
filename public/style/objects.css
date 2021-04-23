@@ -2,7 +2,7 @@ main {
     display: grid;
     grid-template-columns: 3fr 7fr;
     grid-template-rows: 2fr 8fr;
-    grid-template-areas: "blank header header"
+    grid-template-areas: "filter header header"
                          "filter content content"
                          "filter footer footer";
     height: 100%;
@@ -54,6 +54,7 @@ footer {
 .price-range-label{
     font-weight: 600;
     margin-right: 0.75rem;
+    white-space: nowrap;
 }
 
 .price-range-input{

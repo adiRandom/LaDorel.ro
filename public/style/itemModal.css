@@ -3,6 +3,7 @@
 
 #item-modal{
     position: fixed;
+    z-index: 1;
     top:0;
     left: 0;
     width:100vw;
@@ -12,7 +13,7 @@
     justify-content: center;
     overflow-y: hidden;
     background: rgba(29,81,26,0.4);
-    backdrop-filter: blur(4);
+    backdrop-filter: blur(4px);
 }
 
 #item-modal-card{

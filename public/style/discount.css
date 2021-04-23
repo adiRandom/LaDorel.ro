@@ -1,0 +1,30 @@
+main {
+    display: grid;
+    grid-template-rows: 2fr 7fr 1fr;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+}
+
+header {
+    grid-row:1/2;
+    height: fit-content;
+    margin-left: 4rem;
+    color:var(--priamry);
+}
+h1{
+    z-index: 0;
+}
+
+
+article {
+    overflow-y: auto;
+    display: flex;
+    grid-row: 2/3;
+    margin-left: 4rem;
+}
+
+footer {
+    grid-row:3/4;
+}

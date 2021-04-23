@@ -1,9 +1,8 @@
-import User from "../models/User";
 import {createHash} from "crypto";
 
-const userStore: User[] = []
+const userStore= []
 
-function getRandomString(len: number): string {
+function getRandomString(len) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
@@ -13,21 +12,21 @@ function getRandomString(len: number): string {
     return result;
 }
 
-function hash(val: string, salt: string): string {
+function hash(val, salt) {
     const hash = createHash("sha256");
     hash.update(val);
     hash.update(salt);
     return hash.digest().toString()
 }
 
-export default function authenticate(email: string, password: string): string {
+export default function authenticate(email, password) {
     const userFound = userStore.find(user => user.email === email)
     if (!userFound) {
         //No user found, create a new one
         const salt = getRandomString(32);
         const token = getRandomString(32);
         const _hash = hash(password, salt);
-        const user: User = {
+        const user = {
             email,
             hash: _hash,
             salt,
@@ -47,11 +46,11 @@ export default function authenticate(email: string, password: string): string {
     }
 }
 
-export function getUser(token: string): User | undefined {
+export function getUser(token){
     return userStore.find(user => user.token === token)
 }
 
-export function updateUser(token: string, firstName: string, lastName: string) {
+export function updateUser(token, firstName, lastName) {
     const index = userStore.findIndex(user => user.token === token);
     userStore[index] = {
         ...userStore[index],

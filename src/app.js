@@ -1,10 +1,13 @@
 import express from 'express';
 import path from 'path'
-import {Item} from "./models/Item";
 import cors from "cors"
-import authenticate, {getUser, updateUser} from "./services/auth";
-import {addItemToCart, getCart, removeItemFromCart} from "./services/cart";
+import authenticate, {getUser, updateUser} from "./services/auth.js";
+import {addItemToCart, getCart, removeItemFromCart} from "./services/cart.js";
 import cookieParser from 'cookie-parser'
+import {promises as fs} from "fs"
+
+//ES Modules mode doesn't support built in __dirname
+const __dirname = path.dirname(new URL(import.meta.url).pathname).substring(1);
 
 const app = express();
 // set the view engine to ejs
@@ -13,7 +16,6 @@ app.set('view engine', 'ejs');
 //set the public folder
 
 app.use(express.static(path.join(__dirname, '../public')))
-
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
@@ -42,14 +44,16 @@ app.use((req, res, next) => {
 
 // View Routes
 app.get('/', async (req, res) => {
-    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects
     const user = getUser(req.cookies?.session) ?? null ?? null
     const initialCart = getCart(user?.id) ?? null;
     res.render("pages/home/index", {item: items[0], initialCart: initialCart, user: user})
 })
 
 app.get("/unelte", async (req, res) => {
-    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects
     const user = getUser(req.cookies?.session) ?? null
     const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/objects", {
@@ -62,7 +66,8 @@ app.get("/unelte", async (req, res) => {
 })
 
 app.get("/unelte-de-putere", async (req, res) => {
-    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects
     const user = getUser(req.cookies?.session) ?? null
     const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/objects", {
@@ -74,7 +79,8 @@ app.get("/unelte-de-putere", async (req, res) => {
 })
 
 app.get("/masini", async (req, res) => {
-    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects
     const user = getUser(req.cookies?.session) ?? null
     const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/objects", {
@@ -104,11 +110,23 @@ app.get("/user", async (req, res) => {
     }
 })
 
+app.get("/oferte",async(req,res)=>{
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects.filter(item=>!!item.discount)
+    const user = getUser(req.cookies?.session) ?? null
+    const initialCart = getCart(user?.id) ?? null;
+    res.render("pages/products/discounted", {
+        initialCart, user,
+        items
+    })
+})
+
 //API routes
 
 //GET the tools category
 app.get("/api/unelte", async (req, res) => {
-    const items = (await import("./fixtures/trending.json")).objects as Item[]
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects
     res.json(items);
 })
 
@@ -117,7 +135,6 @@ app.get("/api/unelte", async (req, res) => {
 app.post("/api/auth", async (req, res) => {
     const {email, password} = req.body;
     const token = authenticate(email, password);
-    console.log(token)
     if (token !== "") {
         //    Valid auth, respond with the token
         res.cookie("session", token).sendStatus(200);
@@ -150,6 +167,12 @@ app.post("/api/user", (req, res) => {
     const token = req.cookies.session;
     updateUser(token, prenume, nume);
     res.redirect("/user");
+})
+
+app.get("/api/oferte", async (req, res) => {
+    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8")
+    const items = JSON.parse(file).objects.filter(item => !!item.discount);
+    res.json(items);
 })
 
 

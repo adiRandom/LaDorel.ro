@@ -95,6 +95,8 @@ function addToCart(event) {
 
 //Bind event listeners
 
-document.querySelector("#buy-button").addEventListener("click", buy);
+document.querySelector("#buy-button")?.addEventListener("click", buy);
 document.querySelectorAll(".cart-item-remove").forEach(el => el.addEventListener("click", removeItem));
+
+//Bind to the item modal
 document.querySelector("#item-modal-add").addEventListener("click",addToCart)

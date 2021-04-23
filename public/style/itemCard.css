@@ -14,6 +14,7 @@
     margin-bottom: 1rem;
     width: 100%;
     position: relative;
+    z-index: 0;
 }
 
 .card-thumbnail {
@@ -27,6 +28,7 @@
     right: 0;
     top: 1rem;
     padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    z-index: 0;
 }
 
 .discount-value {
@@ -52,5 +54,5 @@
 }
 
 .card:hover {
-    box-shadow: var(--shadow)
+    box-shadow: var(--shadow);
 }
