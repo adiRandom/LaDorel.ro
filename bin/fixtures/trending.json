@@ -8,6 +8,7 @@
             "description": "Un ciocan din colecita Esential. Ciocanul de care oricine are nevoie in viata lui",
             "rating": 5,
             "price": 20,
+            "discount": 0.1,
             "techSpecs": [
                 [
                     "Material maner",

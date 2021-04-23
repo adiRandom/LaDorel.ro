@@ -3,7 +3,7 @@
         <img alt="item thumbnail" class="card-thumbnail" src="<%= item.thumbnailUrl %>"/>
         <% if(item.discount){ %>
             <div class="discount-ribbon">
-                <h6 class="discount-value"><%= item.discount %></h6>
+                <h6 class="discount-value">-<%= item.discount * 100 %>%</h6>
             </div>
         <% } %>
     </section>

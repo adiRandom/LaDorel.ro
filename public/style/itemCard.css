@@ -21,12 +21,12 @@
 }
 
 .discount-ribbon {
-    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 97%, 33% 50%, 0 3%);
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%, 33% 50%, 0 0%);
     background: var(--secondary-dark);
     position: absolute;
     right: 0;
     top: 1rem;
-    padding: 1rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 }
 
 .discount-value {

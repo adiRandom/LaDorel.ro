@@ -8,5 +8,6 @@ export type Item = {
     description: string,
     rating: number,
     price: number,
-    techSpecs: [string,string][]
+    techSpecs: [string, string][]
+    discount: number
 }
