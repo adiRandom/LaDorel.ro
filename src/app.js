@@ -176,7 +176,7 @@ app.get("/api/cart", async (req, res) => {
     res.json({ objects: items });
 });
 
-app.post("/api/cart", async (req, res) => {
+app.put("/api/cart", async (req, res) => {
     const user = getUser(req.cookies.token);
     const item = req.body;
     addItemToCart(user?.id ?? "", item);

@@ -1,3 +1,4 @@
+// TODO: Fetching initial cart not working
 function addItemToCartAPI(item) {
     fetch("/api/cart", {
         method: "PUT",
@@ -55,7 +56,7 @@ function addToCart(event) {
         for (const cookie of cookies) {
             const trimmedCookie = cookie.trim();
             if (trimmedCookie.indexOf(name) == 0) {
-                return cookie.substring(name.length+1, trimmedCookie.length);
+                return cookie.substring(name.length + 1, trimmedCookie.length);
             }
         }
         return "";
