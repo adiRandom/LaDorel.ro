@@ -65,7 +65,7 @@ function addToCart(event) {
         return;
     }
     //Get the item
-    const itemId = Number.parseInt(event.target.getAttribute("data-id"));
+    const itemId = Number.parseInt(event.currentTarget.getAttribute("data-id"));
     const item = dataStore.items.find((val) => val.id === itemId);
 
     //Add item to the DOM
