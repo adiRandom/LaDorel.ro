@@ -1,0 +1,45 @@
+main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    height: 35%;
+}
+
+section:first-of-type {
+    border-right: 1px var(--text-disabled) solid;
+    border-radius: 2px;
+    width: 25%;
+}
+
+#contact-list {
+    list-style: none;
+}
+
+#contact-logo {
+    width: 75%;
+}
+
+#under-logo-text {
+    color: var(--text-disabled);
+}
+
+.contact-item{
+	display:flex;
+	margin-bottom: 1rem;
+}
+
+.material-icons-outlined{
+	margin-right:0.5rem;
+	color:var(--secondary)
+}

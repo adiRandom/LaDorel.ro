@@ -1,32 +1,60 @@
+<!-- Test cart without scripts -->
+
 <!DOCTYPE html>
 <html class="no-js" lang="ro">
-  <head>
-    <meta charset="utf-8" />
-    <title>LaDorel.ro</title>
-    <meta name="description" content="Demo eCommerce platform" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <meta charset="utf-8" />
+        <title>LaDorel.ro</title>
+        <meta name="description" content="Demo eCommerce platform" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="og:title" content="LaDorer.ro" />
-    <meta property="og:type" content="application/eshop" />
-    <meta property="og:image" content="Logo.png" />
+        <meta property="og:title" content="LaDorer.ro" />
+        <meta property="og:type" content="application/eshop" />
+        <meta property="og:image" content="Logo.png" />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,600&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="theme-color" content="#6BF564" />
-    <link rel="stylesheet" href="/root.css" />
-  </head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+            rel="stylesheet"
+        />
+        <meta name="theme-color" content="#6BF564" />
+        <link rel="stylesheet" href="/root.css" />
+		<link rel="stylesheet" href="/style/contact.css"/>
+    </head>
 
-  <body onload="getHomeItemsInitial()">
-    <%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
-    
-  </body>
+    <body>
+        <%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
+        <main>
+            <section>
+                <img src="/Logo.png" id="contact-logo" alt="logo" />
+                <div>
+                    <h5 id="under-logo-text">Contacteaza-ti magazinul preferat</h5>
+                </div>
+            </section>
+            <section>
+                <ul id="contact-list">
+                    <li class="contact-item">
+                        <span class="material-icons-outlined"> phone </span>
+                        <h5>0712345690</h5>
+                    </li>
+                    <li class="contact-item">
+                        <span class="material-icons-outlined"> email </span>
+                        <h5>contact@ladorel.ro</h5>
+                    </li>
+                    <li class="contact-item">
+                        <span class="material-icons-outlined">
+                            location_on
+                        </span>
+                        <h5>Rainbow St. Nr. 9 3/4, Amman, Jordan</h5>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </body>
 
-  <script src="/script/dataStore.js"></script>
-  <script src="/script/index.js"></script>
-  <script src="/script/cart.js"></script>
-  <script src="/script/itemModal.js"></script>
 </html>
