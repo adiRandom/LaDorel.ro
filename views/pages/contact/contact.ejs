@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <title>LaDorel.ro</title>
+    <meta name="description" content="Demo eCommerce platform" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="LaDorer.ro" />
+    <meta property="og:type" content="application/eshop" />
+    <meta property="og:image" content="Logo.png" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#6BF564" />
+    <link rel="stylesheet" href="/root.css" />
+  </head>
+
+  <body onload="getHomeItemsInitial()">
+    <%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
+    
+  </body>
+
+  <script src="/script/dataStore.js"></script>
+  <script src="/script/index.js"></script>
+  <script src="/script/cart.js"></script>
+  <script src="/script/itemModal.js"></script>
+</html>
