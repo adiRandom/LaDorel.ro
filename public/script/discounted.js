@@ -1,10 +1,8 @@
 function getItemsInitial() {
     //Get all the item cards rendered by the server
-    //TODO: Change the endpoint based on the page
     fetch("http://localhost:3000/api/oferte").then(res => res.json()).then(items => dataStore.items = items)
     //Also get the nodes
     document.querySelectorAll(".card").forEach(el => dataStore.itemNodes.push(el))
-//    TODO: Implement pagination
 }
 
 function getRandomInt(min, max) {

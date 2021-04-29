@@ -25,7 +25,6 @@ function submitForm() {
             }),
             headers: {"Content-Type": "application/json"}
         }).then(res => res.ok?res:res.json()).then(res => {
-            console.log(res)
             if (res.error) {
                 //There was an error
                 document.querySelector("#email-error").innerHTML = res.error;

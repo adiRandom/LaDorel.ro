@@ -2,26 +2,26 @@ function addItemToCartAPI(item) {
     fetch("/api/cart", {
         method: "PUT",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(item)
-    })
+        body: JSON.stringify(item),
+    });
 }
 
 function removeItemFromCartAPI(itemId) {
     fetch("/api/cart", {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({id: itemId})
-    })
+        body: JSON.stringify({ id: itemId }),
+    });
 }
 
 function clearCartAPI() {
     fetch("/api/cart", {
         method: "POST",
-    })
+    });
 }
 
 function removeItem(event) {
@@ -29,43 +29,60 @@ function removeItem(event) {
     const itemId = Number.parseInt(event.target.getAttribute("data-id"));
 
     //Remove it from the data store and from the DOM
-    document.querySelector(`#cart-item-${itemId}`).remove()
-    dataStore.cart = dataStore.cart.filter(item => item.id !== itemId)
+    document.querySelector(`#cart-item-${itemId}`).remove();
+    dataStore.cart = dataStore.cart.filter((item) => item.id !== itemId);
 
-    removeItemFromCartAPI(itemId)
+    removeItemFromCartAPI(itemId);
 }
 
 function buy() {
     //Clear the cart
-    const list = document.querySelector(".cart-list")
-    document.querySelectorAll(".cart-item").forEach(el => list.removeChild(el))
+    const list = document.querySelector(".cart-list");
+    document
+        .querySelectorAll(".cart-item")
+        .forEach((el) => list.removeChild(el));
 
-    alert("Comanda plasata!")
+    alert("Comanda plasata!");
     clearCartAPI();
 }
 
-
 function addToCart(event) {
+    //If the user is not logged in, redirect them to the logi  page
+    function getCookie(val) {
+        const name = val + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split(";");
+        for (const cookie of cookies) {
+            const trimmedCookie = cookie.trim();
+            if (trimmedCookie.indexOf(name) == 0) {
+                return cookie.substring(name.length+1, trimmedCookie.length);
+            }
+        }
+        return "";
+    }
+    if (getCookie("session") === "") {
+        window.location.replace("/auth");
+        return;
+    }
     //Get the item
-    //TODO: Store empty
-    const itemId = Number.parseInt(event.target.getAttribute("data-id"))
-    const item = dataStore.items.find(val => val.id === itemId)
+    const itemId = Number.parseInt(event.target.getAttribute("data-id"));
+    const item = dataStore.items.find((val) => val.id === itemId);
 
     //Add item to the DOM
 
     const itemNode = document.createElement("li");
     itemNode.className = "cart-item";
-    itemNode.id = `cart-item-${item.id}`
+    itemNode.id = `cart-item-${item.id}`;
 
     const itemImage = document.createElement("img");
     itemImage.src = item.thumbnailUrl;
-    itemImage.className = "cart-item-image"
-    itemImage.alt = "item-thumbnail"
+    itemImage.className = "cart-item-image";
+    itemImage.alt = "item-thumbnail";
 
     const itemRemove = document.createElement("img");
     itemRemove.src = "/img/remove.svg";
     itemRemove.setAttribute("data-id", item.id);
-    itemRemove.className = "cart-item-remove"
+    itemRemove.className = "cart-item-remove";
     itemRemove.alt = "remove-button";
 
     const itemInfoBox = document.createElement("div");
@@ -73,11 +90,14 @@ function addToCart(event) {
 
     const itemName = document.createElement("h5");
     itemName.className = "cart-item-name";
-    itemName.innerText = item.name.toString() > 36 ? item.name.toString().substring(0, 33) + "..." : item.name.toString();
+    itemName.innerText =
+        item.name.toString() > 36
+            ? item.name.toString().substring(0, 33) + "..."
+            : item.name.toString();
 
     const itemPrice = document.createElement("h6");
     itemPrice.className = "cart-item-price";
-    itemPrice.innerText = `${item.price} lei`
+    itemPrice.innerText = `${item.price} lei`;
 
     itemInfoBox.appendChild(itemName);
     itemInfoBox.appendChild(itemPrice);
@@ -86,17 +106,17 @@ function addToCart(event) {
     itemNode.appendChild(itemImage);
     itemNode.appendChild(itemInfoBox);
 
-    document.querySelector(".cart-list").appendChild(itemNode)
+    document.querySelector(".cart-list").appendChild(itemNode);
 
-
-    addItemToCartAPI(item)
-
+    addItemToCartAPI(item);
 }
 
 //Bind event listeners
 
 document.querySelector("#buy-button")?.addEventListener("click", buy);
-document.querySelectorAll(".cart-item-remove").forEach(el => el.addEventListener("click", removeItem));
+document
+    .querySelectorAll(".cart-item-remove")
+    .forEach((el) => el.addEventListener("click", removeItem));
 
 //Bind to the item modal
-document.querySelector("#item-modal-add").addEventListener("click",addToCart)
+document.querySelector("#item-modal-add").addEventListener("click", addToCart);

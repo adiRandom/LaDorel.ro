@@ -1,27 +1,27 @@
 <!--    The modal for seeing the description of an item-->
 
-<!--TODO: Add fade in-->
 <div id="item-modal">
     <div id="item-modal-card">
         <div id="item-modal-image-wrapper">
-            <img id="item-modal-image" src="" alt="item-image"/>
+            <img id="item-modal-image" src="" alt="item-image" />
         </div>
         <div id="item-modal-info">
             <h2 id="item-modal-title"></h2>
-            <!--            TODO: Add rating-->
             <div id="item-modal-data">
                 <h5 id="item-modal-description"></h5>
                 <h3>Specificatii</h3>
                 <table id="item-modal-specs-table">
-                    <tbody id="item-modal-specs">
-
-                    </tbody>
+                    <tbody id="item-modal-specs"></tbody>
                 </table>
             </div>
-            <!--            TODO: Prevent adding to cart if not logged in-->
             <button id="item-modal-add" class="button-primary">
                 <h5 id="item-modal-price"></h5>
+                <%if(user){%>
+
                 <h6>Adauga in cos</h6>
+                <%}%> <%if(!user){%>
+                <h6>Intra in cont</h6>
+                <%}%>
             </button>
         </div>
     </div>

@@ -1,4 +1,5 @@
 function openItemModal(e) {
+    console.log(dataStore)
     const itemId = e.currentTarget.getAttribute("id");
     const item = dataStore.items.find(item => item.id.toString() === itemId)
     //Insert the item data into the modal

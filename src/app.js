@@ -35,11 +35,14 @@ app.use((req, res, next) => {
     }
     const token = req.cookies?.session;
     if (!token || token === "") {
-        res.status(403);
+        res.sendStatus(403);
         return;
     }
     if (!getUser(token)) {
-        res.status(401);
+        const expDate = new Date();
+        expDate.setFullYear(1971);
+        // Invalidate the session
+        res.cookie("session", "", { expires: expDate }).sendStatus(401);
         return;
     }
 
