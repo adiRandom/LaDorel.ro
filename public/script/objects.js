@@ -1,6 +1,10 @@
 function getItemsInitial(page) {
     //Get all the item cards rendered by the server
-    fetch(`http://localhost:3000/api/${page}`)
+    fetch(
+        `http://localhost:3000/api/${
+            page === "unelte de putere" ? "unelte/putere" : page
+        }`
+    )
         .then((res) => res.json())
         .then((items) => (dataStore.items = items));
     //Also get the nodes

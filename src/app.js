@@ -63,7 +63,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/unelte", async (req, res) => {
-    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8");
+    const file = await fs.readFile("./src/fixtures/unelte.json", "UTF-8");
     const items = JSON.parse(file).objects;
     const user = getUser(req.cookies?.session) ?? null;
     const initialCart = getCart(user?.id) ?? null;
@@ -78,7 +78,10 @@ app.get("/unelte", async (req, res) => {
 });
 
 app.get("/unelte-de-putere", async (req, res) => {
-    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8");
+    const file = await fs.readFile(
+        "./src/fixtures/unelte_de_putere.json",
+        "UTF-8"
+    );
     const items = JSON.parse(file).objects;
     const user = getUser(req.cookies?.session) ?? null;
     const initialCart = getCart(user?.id) ?? null;
@@ -93,7 +96,7 @@ app.get("/unelte-de-putere", async (req, res) => {
 });
 
 app.get("/masini", async (req, res) => {
-    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8");
+    const file = await fs.readFile("./src/fixtures/masini.json", "UTF-8");
     const items = JSON.parse(file).objects;
     const user = getUser(req.cookies?.session) ?? null;
     const initialCart = getCart(user?.id) ?? null;
@@ -127,14 +130,23 @@ app.get("/user", async (req, res) => {
 });
 
 app.get("/oferte", async (req, res) => {
-    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8");
-    const items = JSON.parse(file).objects.filter((item) => !!item.discount);
+    const paths = [
+        "./src/fixutres/trending.json",
+        "./src/fixutres/unelte.json",
+        "./src/fixutres/unelte_de_putere.json",
+        "./src/fixtures/masini.json",
+    ];
+    const files = await Promise.all(
+        paths.map((path) => fs.readFile(path, "utf-8"))
+    );
+    const items = files.map((file) => JSON.parse(file).objects).flat();
+    const discountedItems = items.filter((item) => !!item.discount);
     const user = getUser(req.cookies?.session) ?? null;
     const initialCart = getCart(user?.id) ?? null;
     res.render("pages/products/discounted", {
         initialCart,
         user,
-        items,
+        items: discountedItems,
     });
 });
 
@@ -151,7 +163,21 @@ app.get("/contact", async (req, res) => {
 
 //GET the tools category
 app.get("/api/unelte", async (req, res) => {
-    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8");
+    const file = await fs.readFile("./src/fixtures/unelte.json", "UTF-8");
+    const items = JSON.parse(file).objects;
+    res.json(items);
+});
+
+app.get("/api/unelte/putere", async (req, res) => {
+    const file = await fs.readFile(
+        "./src/fixtures/unelte_de_putere.json",
+        "UTF-8"
+    );
+    const items = JSON.parse(file).objects;
+    res.json(items);
+});
+app.get("/api/masini", async (req, res) => {
+    const file = await fs.readFile("./src/fixtures/masini.json", "UTF-8");
     const items = JSON.parse(file).objects;
     res.json(items);
 });
