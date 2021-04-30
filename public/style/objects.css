@@ -16,6 +16,7 @@ header {
     grid-area: header;
     height: fit-content;
     margin-left: 4rem;
+    color:var(--text-inverted)
 }
 
 aside {

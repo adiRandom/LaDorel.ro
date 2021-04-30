@@ -37,6 +37,7 @@ section:first-of-type {
 .contact-item{
 	display:flex;
 	margin-bottom: 1rem;
+    color:var(--text-inverted)
 }
 
 .material-icons-outlined{

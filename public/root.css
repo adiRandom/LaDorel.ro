@@ -77,7 +77,8 @@ a:active {
 }
 
 body {
-    background: var(--background);
+    /* background: var(--background); */
+    background:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-026_1_3.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=5e2538460264ced38ccd5dee44db8de1");
     margin: 1rem;
     height: calc(100vh - 1rem - 100px);
     margin-top: 100px;

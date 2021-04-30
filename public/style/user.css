@@ -8,3 +8,7 @@ input{
     margin-bottom: 1rem;
     min-height: 2rem;
 }
+
+h1,h2{
+    color:var(--text-inverted)
+}
