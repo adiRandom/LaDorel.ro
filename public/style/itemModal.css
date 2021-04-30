@@ -1,49 +1,48 @@
-
 /*Item modal*/
 
-#item-modal{
+#item-modal {
     position: fixed;
     z-index: 1;
-    top:0;
+    top: 0;
     left: 0;
-    width:100vw;
-    height:100vh;
+    width: 100vw;
+    height: 100vh;
     display: none;
     align-items: center;
     justify-content: center;
     overflow-y: hidden;
-    background: rgba(29,81,26,0.4);
+    background: rgba(29, 81, 26, 0.4);
     backdrop-filter: blur(4px);
 }
 
-#item-modal-card{
+#item-modal-card {
     height: 80%;
-    width:60%;
+    width: 60%;
     background: var(--top);
     box-shadow: var(--shadow);
     display: flex;
     align-items: center;
 }
 
-#item-modal-image-wrapper{
+#item-modal-image-wrapper {
     width: 50%;
-    padding:0 1rem;
+    padding: 0 1rem;
 }
 
-#item-modal-image{
+#item-modal-image {
     width: 100%;
 }
 
-#item-modal-info{
+#item-modal-info {
     height: 100%;
-    padding:0 2.5rem;
+    padding: 0 2.5rem;
 }
 
-#item-modal-data{
+#item-modal-data {
     overflow-y: auto;
 }
 
-#item-modal-add{
+#item-modal-add {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,8 +50,7 @@
     width: 30%;
 }
 
-
-.item-modal-spec-text-value{
+.item-modal-spec-text-value {
     margin-left: 1rem;
 }
 
@@ -61,18 +59,45 @@
     white-space: nowrap;
 }
 
-.item-modal-spec:nth-child(2n+1){
-    background: rgba(203,124,206,0.3);
+.item-modal-spec:nth-child(2n + 1) {
+    background: rgba(203, 124, 206, 0.3);
 }
 
-.item-modal-spec:nth-child(2n+1){
-    background: rgba(136,255,130,0.3)
+.item-modal-spec:nth-child(2n + 1) {
+    background: rgba(136, 255, 130, 0.3);
 }
 
-.item-modal-spec-value{
+.item-modal-spec-value {
     width: 100%;
 }
 
-#item-modal-specs-table{
+#item-modal-specs-table {
     border-spacing: 0;
+}
+
+@media only screen and (max-width:800px) {
+    #item-modal-card {
+        height: fit-content;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #item-modal-card {
+        min-height: 100%;
+        width: 100%;
+        background: var(--top);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        height: fit-content;
+    }
+
+    #item-modal{
+        overflow-y: auto;
+    }
+
+    
+#item-modal-add {
+    width: 50%;
+}
 }

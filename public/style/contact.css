@@ -34,13 +34,29 @@ section:first-of-type {
     color: var(--text-disabled);
 }
 
-.contact-item{
-	display:flex;
-	margin-bottom: 1rem;
-    color:var(--text-inverted)
+.contact-item {
+    display: flex;
+    margin-bottom: 1rem;
+    color: var(--text-inverted);
 }
 
-.material-icons-outlined{
-	margin-right:0.5rem;
-	color:var(--secondary)
+.material-icons-outlined {
+    margin-right: 0.5rem;
+    color: var(--secondary);
+}
+
+@media only screen and (max-width: 400px) {
+    main {
+        flex-direction: column;
+        justify-content: center;
+    }
+    section {
+        width: 100%;
+    }
+
+    section:first-of-type {
+        border-right: 0;
+        border-radius: 0px;
+        width: 100%;
+    }
 }

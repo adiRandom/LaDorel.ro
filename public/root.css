@@ -1,13 +1,12 @@
 :root {
-
     /*Theme*/
-    --priamry: #6BF564;
+    --priamry: #6bf564;
     --primary-light: #88ff82;
     --primary-dark: #3aa834;
-    --secondary: #F58DC8;
-    --secondary-dark: #A82D73;
+    --secondary: #f58dc8;
+    --secondary-dark: #a82d73;
     /*Text*/
-    --error: #F01A3E;
+    --error: #f01a3e;
     --text-primary: #1c1c1c;
     --text-inverted: #f5fcf5;
     --text-disabled: #899189;
@@ -32,12 +31,10 @@ h2 {
     font-weight: 600;
 }
 
-
 h3 {
     font-size: 2.5rem;
     font-family: Raleway sans-serif;
     font-weight: 400;
-
 }
 
 h4 {
@@ -60,7 +57,6 @@ h6 {
     margin: 0;
 }
 
-
 p {
     font-size: 1rem;
     font-family: Raleway sans-serif;
@@ -73,20 +69,17 @@ a {
 
 a:active {
     outline: none;
-
 }
 
 body {
     /* background: var(--background); */
-    background:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-026_1_3.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=5e2538460264ced38ccd5dee44db8de1");
+    background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-026_1_3.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=5e2538460264ced38ccd5dee44db8de1");
     margin: 1rem;
     height: calc(100vh - 1rem - 100px);
     margin-top: 100px;
 }
 
-
 /*NAVBAR*/
-
 
 #app-nav {
     display: flex;
@@ -138,10 +131,9 @@ body {
     transition: ease-in-out background-color 0.3s, linear font-size 0.1s;
 }
 
-
 .nav-item:hover {
     background: var(--primary-light);
-    font-size: 1.65rem
+    font-size: 1.65rem;
 }
 
 .nav-item:first-of-type {
@@ -163,11 +155,9 @@ body {
     color: var(--text-disabled);
 }
 
-
 .nav-item:first-of-type:hover #nav-menu-dropdown {
     display: flex;
 }
-
 
 #nav-menu-dropdown {
     position: absolute;
@@ -175,7 +165,6 @@ body {
     margin-top: 3rem;
     background: var(--surface);
     flex-direction: column;
-
 }
 
 #nav-menu-dropdown:hover {
@@ -197,6 +186,36 @@ body {
     background: var(--secondary);
 }
 
+@media only screen and (max-width: 800px) {
+    .nav-item {
+        padding: 0.75rem 0.25rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .nav-item,
+    .nav-item:first-of-type,
+    .nav-item:last-of-type {
+        border-radius: 0 !important;
+        padding: 1rem 0;
+        width: 100%;
+    }
+    body {
+        margin: 1rem 0;
+    }
+    #app-nav {
+        position: unset;
+        flex-direction: column;
+    }
+    #nav-menu {
+        border-radius: 0;
+        flex-direction: column;
+        margin: 0;
+        padding-left: 1rem;
+        align-items: flex-start;
+    }
+}
+
 /*CART*/
 
 .cart {
@@ -215,12 +234,13 @@ body {
     margin-top: 1rem;
     background: var(--surface);
     padding: 1rem;
+    z-index: 2;
 }
 
-.cart:hover .cart-dropdown, .cart-dropdown:hover {
+.cart:hover .cart-dropdown,
+.cart-dropdown:hover {
     display: flex;
 }
-
 
 .cart-list {
     overflow-y: auto;
@@ -254,6 +274,18 @@ body {
     box-shadow: var(--shadow);
 }
 
+@media only screen and (max-width:800px) {
+    .cart-dropdown {
+        right: 50%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .cart-dropdown {
+        width: 50vw;
+    }
+}
+
 /*INPUTS*/
 
 input {
@@ -270,7 +302,8 @@ input:focus {
     box-shadow: var(--shadow);
 }
 
-.button-primary, input[type=submit] {
+.button-primary,
+input[type="submit"] {
     border-radius: 1.25rem;
     font-size: 1.75rem;
     font-family: Raleway sans-serif;
@@ -283,11 +316,13 @@ input:focus {
     cursor: pointer;
 }
 
-.button-primary:hover, input[type=submit]:hover {
+.button-primary:hover,
+input[type="submit"]:hover {
     box-shadow: var(--shadow);
 }
 
-.button-primary:focus, input[type=submit]:hover {
+.button-primary:focus,
+input[type="submit"]:hover {
     outline: none;
 }
 
