@@ -33,7 +33,6 @@ function submitForm() {
                 window.location.replace("/")
             }
         }).catch(e => {
-            console.log(e);
             alert("A aparut o eroare. Incercati mai tarziu.")
         })
     }

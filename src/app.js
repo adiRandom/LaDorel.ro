@@ -170,22 +170,24 @@ app.post("/api/auth", async (req, res) => {
 });
 
 app.get("/api/cart", async (req, res) => {
-    const user = getUser(req.cookies.token);
+    const user = getUser(req.cookies?.session);
 
     const items = getCart(user?.id ?? "");
     res.json({ objects: items });
 });
 
 app.put("/api/cart", async (req, res) => {
-    const user = getUser(req.cookies.token);
+    const user = getUser(req.cookies?.session);
     const item = req.body;
     addItemToCart(user?.id ?? "", item);
+    res.sendStatus(200);
 });
 
 app.delete("/api/cart", async (req, res) => {
-    const user = getUser(req.cookies.token);
+    const user = getUser(req.cookies?.session);
     const { id } = req.body;
     removeItemFromCart(user?.id ?? "", id);
+    res.sendStatus(200);
 });
 
 app.post("/api/user", (req, res) => {

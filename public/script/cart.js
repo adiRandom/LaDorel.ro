@@ -85,7 +85,9 @@ function addToCart(event) {
     itemRemove.setAttribute("data-id", item.id);
     itemRemove.className = "cart-item-remove";
     itemRemove.alt = "remove-button";
+    itemRemove.addEventListener("click", removeItem);
 
+    
     const itemInfoBox = document.createElement("div");
     itemInfoBox.className = "cart-item-info";
 
@@ -108,6 +110,7 @@ function addToCart(event) {
     itemNode.appendChild(itemInfoBox);
 
     document.querySelector(".cart-list").appendChild(itemNode);
+    
 
     addItemToCartAPI(item);
 }

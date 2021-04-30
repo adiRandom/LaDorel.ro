@@ -201,6 +201,7 @@ body {
 .cart {
     position: relative;
     height: fit-content;
+    padding: 1rem;
 }
 
 .cart-dropdown {

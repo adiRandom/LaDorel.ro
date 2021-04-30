@@ -39,12 +39,12 @@ function openItemModal(e) {
     document.querySelector("#item-modal").style.display = "flex";
 }
 
-function closeModal(e) {
+function closeItemModal(e) {
     //Check for bubbling
-    if (e.target === e.currentTarget)
-        document.querySelector("#item-modal").style.display = "none"
+    document.querySelector("#item-modal").style.display = "none"
+    e.stopPropagation()
 }
 
 document.querySelectorAll(".card").forEach(el => el.addEventListener("click", openItemModal))
-document.querySelector("#item-modal").addEventListener("click", closeModal)
-document.querySelector("#item-modal-add").addEventListener("click", closeModal)
+document.querySelector("#item-modal").addEventListener("click", closeItemModal)
+document.querySelector("#item-modal-add").addEventListener("click", closeItemModal)
