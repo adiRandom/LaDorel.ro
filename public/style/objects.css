@@ -2,13 +2,14 @@ main {
     display: grid;
     grid-template-columns: 3fr 7fr;
     grid-template-rows: 2fr 8fr;
-    grid-template-areas: "filter header header"
-                         "filter content content"
-                         "filter footer footer";
+    grid-template-areas:
+        "filter header header"
+        "filter content content"
+        "filter content content";
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    width: 60vw;
+    width: 80vw;
 }
 
 header {
@@ -31,46 +32,43 @@ article {
     display: flex;
     grid-area: content;
     margin-left: 4rem;
+    flex-wrap: wrap;
 }
 
-footer {
-    grid-area: footer;
-}
 
-.filter{
+.filter {
     margin-top: 1.5rem;
 }
 
-
-.filter-values{
+.filter-values {
     margin-top: 0.5rem;
 }
 
-#price-range{
+#price-range {
     display: flex;
     align-items: center;
 }
 
-.price-range-label{
+.price-range-label {
     font-weight: 600;
     margin-right: 0.75rem;
     white-space: nowrap;
 }
 
-.price-range-input{
+.price-range-input {
     width: 4rem;
 }
 
-.price-range-input:first-of-type{
+.price-range-input:first-of-type {
     margin-right: 0.75rem;
 }
 
-#price-range-hint{
+#price-range-hint {
     font-weight: 600;
-    color:var(--text-disabled);
+    color: var(--text-disabled);
     margin-top: 1rem;
 }
 
-#filter-submit{
+#filter-submit {
     margin-top: auto;
 }

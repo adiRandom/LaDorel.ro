@@ -131,9 +131,9 @@ app.get("/user", async (req, res) => {
 
 app.get("/oferte", async (req, res) => {
     const paths = [
-        "./src/fixutres/trending.json",
-        "./src/fixutres/unelte.json",
-        "./src/fixutres/unelte_de_putere.json",
+        "./src/fixtures/trending.json",
+        "./src/fixtures/unelte.json",
+        "./src/fixtures/unelte_de_putere.json",
         "./src/fixtures/masini.json",
     ];
     const files = await Promise.all(
@@ -224,9 +224,18 @@ app.post("/api/user", (req, res) => {
 });
 
 app.get("/api/oferte", async (req, res) => {
-    const file = await fs.readFile("./src/fixtures/trending.json", "UTF-8");
-    const items = JSON.parse(file).objects.filter((item) => !!item.discount);
-    res.json(items);
+    const paths = [
+        "./src/fixtures/trending.json",
+        "./src/fixtures/unelte.json",
+        "./src/fixtures/unelte_de_putere.json",
+        "./src/fixtures/masini.json",
+    ];
+    const files = await Promise.all(
+        paths.map((path) => fs.readFile(path, "utf-8"))
+    );
+    const items = files.map((file) => JSON.parse(file).objects).flat();
+    const discountedItems = items.filter((item) => !!item.discount);
+    res.json(discountedItems);
 });
 
 app.listen(3000);

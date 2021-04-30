@@ -4,7 +4,7 @@ main {
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    width: 60vw;
+    width: 70vw;
 }
 
 header {
@@ -23,6 +23,7 @@ article {
     display: flex;
     grid-row: 2/3;
     margin-left: 4rem;
+    flex-wrap: wrap;
 }
 
 footer {
