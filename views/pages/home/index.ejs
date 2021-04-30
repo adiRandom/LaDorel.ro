@@ -1,55 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="ro">
+    <head>
+        <meta charset="utf-8" />
+        <title>LaDorel.ro</title>
+        <meta name="description" content="Demo eCommerce platform" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8">
-    <title>LaDorel.ro</title>
-    <meta name="description" content="Demo eCommerce platform">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="LaDorer.ro" />
+        <meta property="og:type" content="application/eshop" />
+        <meta property="og:image" content="Logo.png" />
 
-    <meta property="og:title" content="LaDorer.ro">
-    <meta property="og:type" content="application/eshop">
-    <meta property="og:image" content="Logo.png">
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,600&display=swap"
+            rel="stylesheet"
+        />
+        <meta name="theme-color" content="#6BF564" />
+        <link rel="stylesheet" href="/root.css" />
+        <link rel="stylesheet" href="/style/index.css" />
+        <link rel="stylesheet" href="/style/itemCard.css" />
+        <link rel="stylesheet" href="/style/itemModal.css" />
+    </head>
 
+    <body onload="getHomeItemsInitial()">
+        <%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
+        <%-include("../../components/item/itemModal")%>
+        <main>
+            <section>
+                <h1 class="home-section-header">Noutati</h1>
+                <article>
+                    <%for(const item of items){%>
+                    <%-include('../../components/item/itemCard',{item:item})%>
+                    <%}%>
+                </article>
+            </section>
+        </main>
+    </body>
 
-    <link rel="icon" type="image/png" href="/favicon.png"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;1,600&display=swap"
-          rel="stylesheet">
-    <meta name="theme-color" content="#6BF564">
-    <link rel="stylesheet" href="/root.css">
-    <link rel="stylesheet" href="/style/index.css">
-    <link rel="stylesheet" href="/style/itemCard.css">
-    <link rel="stylesheet" href="/style/itemModal.css">
-</head>
-
-<body onload="getHomeItemsInitial()">
-
-<%-include("../../components/navigation/navbar",{initialCart:initialCart,user:user})%>
-<%-include("../../components/item/itemModal")%>
-<main>
-    <section>
-        <h1 class="home-section-header">
-            Noutati
-        </h1>
-        <%-include('../../components/item/itemCard',{item:item})%>
-    </section>
-    <section>
-        <h1 class="home-section-header">
-            Recomandate
-        </h1>
-    </section>
-    <section>
-        <h1 class="home-section-header">
-            Cautate
-        </h1>
-    </section>
-</main>
-
-</body>
-
-<script src="/script/dataStore.js"></script>
-<script src="/script/index.js"></script>
-<script src="/script/cart.js"></script>
-<script src="/script/itemModal.js"></script>
+    <script src="/script/dataStore.js"></script>
+    <script src="/script/index.js"></script>
+    <script src="/script/cart.js"></script>
+    <script src="/script/itemModal.js"></script>
 </html>

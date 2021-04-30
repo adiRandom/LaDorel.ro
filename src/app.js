@@ -56,7 +56,7 @@ app.get("/", async (req, res) => {
     const user = getUser(req.cookies?.session) ?? null ?? null;
     const initialCart = getCart(user?.id) ?? null;
     res.render("pages/home/index", {
-        item: items[0],
+        items,
         initialCart: initialCart,
         user: user,
     });
