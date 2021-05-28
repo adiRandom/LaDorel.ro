@@ -34,6 +34,9 @@ function removeItem(event) {
     dataStore.cart = dataStore.cart.filter((item) => item.id !== itemId);
 
     removeItemFromCartAPI(itemId);
+
+    //Save the cart to localStorage as well
+    localStorage.setItem("cart", JSON.stringify(dataStore.cart));
 }
 
 function buy() {
@@ -45,6 +48,9 @@ function buy() {
 
     alert("Comanda plasata!");
     clearCartAPI();
+
+    //Clear the cart from the localStorage
+    localStorage.removeItem("cart")
 }
 
 function addToCart(event) {
@@ -72,7 +78,7 @@ function addToCart(event) {
     //Add item to the DOM
 
     const itemNode = document.createElement("li");
-    itemNode.className = "cart-item";
+    itemNode.classList.add("cart-item");
     itemNode.id = `cart-item-${item.id}`;
 
     const itemImage = document.createElement("img");
@@ -87,7 +93,6 @@ function addToCart(event) {
     itemRemove.alt = "remove-button";
     itemRemove.addEventListener("click", removeItem);
 
-    
     const itemInfoBox = document.createElement("div");
     itemInfoBox.className = "cart-item-info";
 
@@ -110,9 +115,11 @@ function addToCart(event) {
     itemNode.appendChild(itemInfoBox);
 
     document.querySelector(".cart-list").appendChild(itemNode);
-    
 
     addItemToCartAPI(item);
+
+    //Save the cart to localStorage as well
+    localStorage.setItem("cart", JSON.stringify(dataStore.cart));
 }
 
 //Bind event listeners
